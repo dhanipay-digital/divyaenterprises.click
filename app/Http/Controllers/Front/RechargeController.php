@@ -16,13 +16,16 @@ class RechargeController extends Controller
                     return view('front.recharge.' . $service_type);
                     break;
                 } catch (\Throwable $th) {
-                    abort(404, 'Invalid Services');
+                    abort(404, 'Recharge Template Not Found');
                 }
-
 
             default:
                 abort(404, 'Serice not found');
                 break;
         }
+    }
+    public function recharge_submit(Request $request, $service_type)
+    {
+        print_r($_POST);
     }
 }

@@ -25,13 +25,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // Route::get('/', [HomeController::class,'index']);
         Route::prefix('recharge')->group(function(){
             Route::get('/{service_type}', [RechargeController::class,'recharge']);
+            Route::post('/{service_type}', [RechargeController::class,'recharge_submit']);
         });
+        
     });
     
     
 });
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    // return view('dashboard');
+    return redirect('dashboard/recharge/mobile');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
