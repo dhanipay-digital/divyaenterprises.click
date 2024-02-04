@@ -71,11 +71,11 @@
         <ul class="nav secondary-nav" id="category-lists">
           <li class="nav-item"> <a class="nav-link" href="{{ url('/dashboard/recharge/mobile') }}"><span><i class="fas fa-mobile-alt"></i></span>Mobile</a> </li>
           <li class="nav-item"> <a class="nav-link" href="{{ url('/dashboard/recharge/dth') }}"><span><i class="fas fa-tv"></i></span> DTH</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{ url('/dashboard/recharge/electricity') }}"><span><i class="fas fa-lightbulb"></i></span> Electricity</a> </li>
           <li class="nav-item"> <a class="nav-link" href="{{ url('/dashboard/recharge/datacard') }}"><span><i class="fas fa-credit-card"></i></span> DataCard</a> </li>
           <li class="nav-item"> <a class="nav-link" href="{{ url('/dashboard/recharge/broadband') }}"><span><i class="fas fa-wifi"></i></span> Broadband</a> </li>
           <li class="nav-item"> <a class="nav-link" href="{{ url('/dashboard/recharge/landline') }}"><span><i class="fas fa-phone"></i></span> Landline</a> </li>
           <li class="nav-item"> <a class="nav-link" href="{{ url('/dashboard/recharge/cabletv') }}"><span><i class="fas fa-plug"></i></span> CableTv</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="{{ url('/dashboard/recharge/electricity') }}"><span><i class="fas fa-lightbulb"></i></span> Electricity</a> </li>
           <li class="nav-item"> <a class="nav-link" href="{{ url('/dashboard/recharge/metro') }}"><span><i class="fas fa-subway"></i></span> Metro</a> </li>
           <li class="nav-item"> <a class="nav-link" href="{{ url('/dashboard/recharge/gas') }}"><span><i class="fas fa-flask"></i></span> Gas</a> </li>
           <li class="nav-item"> <a class="nav-link" href="{{ url('/dashboard/recharge/water') }}"><span><i class="fas fa-tint"></i></span> Water</a> </li>
@@ -484,7 +484,7 @@
     $(document).ready(function(){
         $("#category-lists li a").each(function(item){
             let itemText = $(this).text().toLowerCase().replace(" ","");
-            let currentPage = "{{ request('service_type') }}".toLowerCase();
+            let currentPage = "{{ request('category') }}".toLowerCase();
             if (itemText==currentPage) {
                 $(this).addClass('active');
             }

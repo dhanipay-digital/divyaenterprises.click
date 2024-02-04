@@ -17,16 +17,11 @@
         <input type="text" class="form-control" data-bv-field="number" id="dataCardNumber" required="" placeholder="Enter DataCard Number">
       </div>
       <div class="mb-3">
-        <select class="form-select" required="">
-          <option value="">Select Your Operator</option>
-          <option>1st Operator</option>
-          <option>2nd Operator</option>
-          <option>3rd Operator</option>
-          <option>4th Operator</option>
-          <option>5th Operator</option>
-          <option>6th Operator</option>
-          <option>7th Operator</option>
-        </select>
+        <select class="form-select" id="operator" required="" name="operator">
+          @foreach ($operator_list as $item)
+              <option value="{{ $item->id }}">{{ $item->name }}</option>
+          @endforeach
+      </select>
       </div>
       <div class="input-group mb-3"> <span class="input-group-text">$</span> <a href="#" data-bs-target="#view-plans" data-bs-toggle="modal" class="view-plans-link">View Plans</a>
         <input class="form-control" id="amount" placeholder="Enter Amount" required="" type="text">

@@ -4,16 +4,11 @@
     <h2 class="text-4 mb-3">Pay your Landline Bill</h2>
     <form id="landlineBill" method="post">
       <div class="mb-3">
-        <select class="form-select" id="operator" required="">
-          <option value="">Select Your Operator</option>
-          <option>1st Operator</option>
-          <option>2nd Operator</option>
-          <option>3rd Operator</option>
-          <option>4th Operator</option>
-          <option>5th Operator</option>
-          <option>6th Operator</option>
-          <option>7th Operator</option>
-        </select>
+        <select class="form-select" id="operator" required="" name="operator">
+          @foreach ($operator_list as $item)
+              <option value="{{ $item->id }}">{{ $item->name }}</option>
+          @endforeach
+      </select>
       </div>
       <div class="mb-3">
         <input type="text" class="form-control" data-bv-field="number" id="telephoneNumber" required="" placeholder="Enter Telephone Number">

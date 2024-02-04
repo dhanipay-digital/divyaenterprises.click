@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Front\FetchController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\RechargeController;
 use App\Http\Controllers\ProfileController;
@@ -16,21 +17,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::prefix('/')->group(function () {
+    Route::get('', [HomeController::class, 'index']);
+    Route::get('contact', [HomeController::class, 'contact']);
+    Route::get('privacy-policy', [HomeController::class, 'policy']);
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::prefix('dashboard')->group(function(){
+    Route::prefix('dashboard')->group(function () {
         // Route::get('/', [HomeController::class,'index']);
-        Route::prefix('recharge')->group(function(){
-            Route::get('/{service_type}', [RechargeController::class,'recharge']);
-            Route::post('/{service_type}', [RechargeController::class,'recharge_submit']);
+        Route::prefix('recharge')->group(function () {
+            Route::get('/{category}', [RechargeController::class, 'recharge']);
+            Route::post('/{category}', [RechargeController::class, 'recharge_submit']);
         });
-        
+
+        Route::prefix('fetch')->group(function () {
+            Route::get('/plan/{category}', [FetchController::class, 'fetch_plans']);
+            Route::get('/operator/{category}', [FetchController::class, 'fetch_operator']);
+        });
     });
-    
-    
 });
 Route::get('/dashboard', function () {
     // return view('dashboard');
@@ -43,4 +51,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
